@@ -167,7 +167,22 @@ def get_ops(images, labels):
     num_aggregate=FLAGS.child_num_aggregate,
     num_replicas=FLAGS.child_num_replicas,
   )
-
+'''
+search_whole_channels = False
+skip_target = 0.8
+skip_weight = 0.0
+num_cells = 5
+num_layers = 5
+num_branches = 4
+out_filters = 48
+lstm_size = 64
+tanh_constant = None
+op_tanh_reduce = 1.0
+temperature = None
+sync_replicas= False
+num_aggregate= 1,
+num_replicas= 1)
+'''
   if FLAGS.child_fixed_arc is None:
     controller_model = ControllerClass(
       search_for=FLAGS.search_for,
