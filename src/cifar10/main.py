@@ -174,11 +174,7 @@ def get_ops(images, labels):
       search_whole_channels=FLAGS.controller_search_whole_channels,
       skip_target=FLAGS.controller_skip_target,
       skip_weight=FLAGS.controller_skip_weight,
-      num_cells=FLAGS.
-      
-      
-      
-      ,
+      num_cells=FLAGS.child_num_cells,
       num_layers=FLAGS.child_num_layers,
       num_branches=FLAGS.child_num_branches,
       out_filters=FLAGS.child_out_filters,
