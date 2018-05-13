@@ -251,6 +251,9 @@ num_replicas= 1)
     "eval_func": child_model.eval_once,
     "num_train_batches": child_model.num_train_batches,
   }
+  ## eval_every = 32*1
+  ## child_model.eval_once will give you validation accuracy of total validation set
+  #3 num_train_batches = number of total batches
 
   return ops
 
@@ -317,10 +320,10 @@ def train():
             
           if actual_step % ops["eval_every"] == 0:
             if (FLAGS.controller_training and
-                epoch % FLAGS.controller_train_every == 0):
+                epoch % FLAGS.controller_train_every == 0): ## epoch % 2 ==0
               print("Epoch {}: Training controller".format(epoch))
               for ct_step in range(FLAGS.controller_train_steps *
-                                    FLAGS.controller_num_aggregate):
+                                    FLAGS.controller_num_aggregate): ## controller_train_step = 50, controller_num_aggregate =  1
                 run_ops = [
                   controller_ops["loss"],
                   controller_ops["entropy"],
