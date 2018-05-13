@@ -30,8 +30,8 @@ flags = tf.app.flags
 FLAGS = flags.FLAGS
 
 DEFINE_boolean("reset_output_dir", False, "Delete output_dir if exists.")
-DEFINE_string("data_path", "", "")
-DEFINE_string("output_dir", "", "")
+DEFINE_string("data_path", "", "") # directort for data_path
+DEFINE_string("output_dir", "", "") # directory for output
 DEFINE_string("data_format", "NHWC", "'NHWC' or 'NCWH'")
 DEFINE_string("search_for", None, "Must be [macro|micro]")
 
@@ -105,7 +105,35 @@ def get_ops(images, labels):
   else:
     ControllerClass = GeneralController
     ChildClass = GeneralChild
-
+   
+   '''
+   images = images dictionary of train, val, test
+   labels = labels dictionary of train, val, test
+   child_cutout_size = None
+   whole_channels = False
+   num_layers = 5 : Number of layers 
+   ex) if 5 -> conv -> pool -> conv -> pool -> conv 
+   num_cells = 5 
+   ex) node of one block!
+   num_branches = 4 : number of operation 
+   fixed_arc= None
+   out_filters_scale = 1
+   out_filters = 48
+   keep_prob = 0.5
+   drop_path_keep_prob = 1.0
+   num_epochs = 300
+   l2_reg = 1e-4
+   data_format = "NCHW" or "NHWC"
+   batch_size = 32
+   clip_mode = "norm"
+   grad_bound = 5.0 : for gradient clipping
+   lr_init= 0.1
+   .....
+   sync_replicas= False
+   num_aggregate= None
+   num_replicas= 1
+   
+   '''
   child_model = ChildClass(
     images,
     labels,
@@ -146,7 +174,11 @@ def get_ops(images, labels):
       search_whole_channels=FLAGS.controller_search_whole_channels,
       skip_target=FLAGS.controller_skip_target,
       skip_weight=FLAGS.controller_skip_weight,
-      num_cells=FLAGS.child_num_cells,
+      num_cells=FLAGS.
+      
+      
+      
+      ,
       num_layers=FLAGS.child_num_layers,
       num_branches=FLAGS.child_num_branches,
       out_filters=FLAGS.child_out_filters,
